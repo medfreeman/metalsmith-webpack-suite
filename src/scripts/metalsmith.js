@@ -1,8 +1,8 @@
 // This is the actual metalsmith configuration script.
 import Metalsmith from 'metalsmith'
-import markdown from 'metalsmith-markdownit'
-import layouts from 'metalsmith-layouts'
 import assets from 'metalsmith-assets'
+import layouts from 'metalsmith-layouts'
+import markdown from 'metalsmith-markdownit'
 import fingerprint from 'metalsmith-fingerprint-ignore'
 
 import paths from '../config/paths'
@@ -31,15 +31,10 @@ export default new Metalsmith(paths.projectRoot)
   )
   .use(
     layouts({
-      engine: 'handlebars',
+      engine: 'qejs',
       default: 'default.html',
       // to avoid conflics, we match only html files
-      pattern: '**/*.html',
-      helpers: {
-        // Neat little handlebars debugger
-        // Usage example: <pre>{{debug this}}</pre>
-        debug: obj => JSON.stringify(obj, null, 2)
-      }
+      pattern: '**/*.html'
     })
   )
   // Display statistics of generated files at the end

@@ -22,6 +22,7 @@
     "deploy": "npm run test && npm run build:prod && gh-pages -d dist/site",
     "lint": "run-p lint:*",
     "lint:js": "eslint --fix src",
+    "lint:ejs": "ejslint layouts/*.html",
     "lint:css": "stylelint src/assets/css/**/*.css",
     "prettier": "prettier-standard 'src/**/*.js'",
     "test": "run-s lint test:*",
@@ -76,6 +77,9 @@
     "*.js": [
       "git-exec-and-restage eslint --fix --",
       "git-exec-and-restage prettier-standard"
+    ],
+    "*.html": [
+      "git-exec-and-restage ejslint --"
     ]
   },
   "dependencies": {},
@@ -93,6 +97,7 @@
     "css-loader": "^0.28.0",
     "cz-conventional-changelog": "^2.0.0",
     "debug": "^3.1.0",
+    "ejs-lint": "^0.3.0",
     "eslint": "^4.10.0",
     "eslint-config-i-am-meticulous": "^7.0.1",
     "eslint-config-prettier": "^2.9.0",
@@ -126,6 +131,7 @@
     "postcss-reporter": "^5.0.0",
     "postcss-url": "^7.1.2",
     "prettier-standard": "^7.0.3",
+    "qejs": "^3.0.5",
     "rimraf": "^2.5.4",
     "semantic-release": "^8.2.0",
     "strip-ansi": "^4.0.0",
