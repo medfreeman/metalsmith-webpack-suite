@@ -21,7 +21,7 @@
     "server:http": "http-server dist/site",
     "deploy": "npm run test && npm run build:prod && gh-pages -d dist/site",
     "lint": "run-p lint:*",
-    "lint:js": "eslint src test",
+    "lint:js": "eslint src",
     "lint:css": "stylelint src/assets/css/**/*.css",
     "prettier": "prettier-standard 'src/**/*.js'",
     "test": "run-s lint test:*",
