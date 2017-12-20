@@ -41,7 +41,8 @@ export default new Metalsmith(paths.projectRoot)
   )
   .use(
     permalinks({
-      pattern: ':title'
+      pattern: ':title',
+      relative: false
     })
   )
   .use(
