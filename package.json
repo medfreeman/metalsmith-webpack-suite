@@ -64,6 +64,14 @@
       "stage-0"
     ]
   },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "standard",
+    "plugins": [
+        "standard",
+        "babel"
+    ]
+  },
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "6.26.0",
