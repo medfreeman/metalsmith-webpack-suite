@@ -2,8 +2,10 @@
 import Metalsmith from 'metalsmith'
 import assets from 'metalsmith-assets'
 import layouts from 'metalsmith-layouts'
+import ldschema from 'metalsmith-ldschema'
 import markdown from 'metalsmith-markdownit'
 import fingerprint from 'metalsmith-fingerprint-ignore'
+import R from 'ramda'
 
 import paths from '../config/paths'
 
@@ -15,6 +17,13 @@ export default new Metalsmith(paths.projectRoot)
   .clean(__PROD__)
   .source(paths.metalsmithSource)
   .destination(paths.metalsmithDestination)
+  .use(
+    ldschema({
+      classLayout: 'class.html',
+      propertyLayout: 'property.html',
+      base: 'http://schema.example.com'
+    })
+  )
   .use(
     assets({
       source: './dist/assets',
@@ -34,7 +43,9 @@ export default new Metalsmith(paths.projectRoot)
       engine: 'qejs',
       default: 'default.html',
       // to avoid conflics, we match only html files
-      pattern: '**/*.html'
+      pattern: '**/*.html',
+      title: 'schema.example.com',
+      R: R
     })
   )
   // Display statistics of generated files at the end
