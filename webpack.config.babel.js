@@ -1,10 +1,10 @@
-const { join } = require('path')
+import { join } from 'path'
 
-const Webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const WriteFilePlugin = require('write-file-webpack-plugin')
+import Webpack from 'webpack'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import WriteFilePlugin from 'write-file-webpack-plugin'
 
-const paths = require('./src/config/paths')
+import paths from './src/config/paths'
 
 const __DEV__ = process.env.NODE_ENV !== 'production'
 const __PROD__ = process.env.NODE_ENV === 'production'
@@ -73,4 +73,4 @@ if (__PROD__) {
   config.plugins.push(new Webpack.optimize.UglifyJsPlugin())
 }
 
-module.exports = config
+export default config

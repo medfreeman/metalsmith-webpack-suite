@@ -1,8 +1,8 @@
-const { resolve, join } = require('path')
+import { resolve, join } from 'path'
 
 const projectRoot = resolve(__dirname, '..', '..')
 
-module.exports = {
+export default {
   projectRoot,
   distribution: join(projectRoot, 'dist'),
   // Metalsmith

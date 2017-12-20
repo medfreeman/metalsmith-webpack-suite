@@ -8,7 +8,7 @@ import WebpackMiddleware from 'webpack-dev-middleware'
 import BrowserSync from 'browser-sync'
 import stripAnsi from 'strip-ansi'
 
-import webpackConfig from '../../webpack.config.js'
+import webpackConfig from '../../webpack.config.babel.js'
 import paths from '../config/paths'
 
 import metalsmith from './metalsmith'
@@ -86,7 +86,7 @@ browserSync.init({
       match: [
         resolve(paths.projectRoot, 'content', '**', '*'),
         resolve(paths.projectRoot, 'layouts', '**', '*.html'),
-        resolve(paths.projectRoot, 'webpack.config.js'),
+        resolve(paths.projectRoot, 'webpack.config.babel.js'),
         resolve(paths.projectRoot, 'postcss.config.js')
       ],
       fn: function(event, file) {
