@@ -1,4 +1,5 @@
 const { join } = require('path')
+
 const Webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
@@ -42,24 +43,32 @@ const config = {
 }
 
 if (__DEV__) {
-  config.plugins.push(new Webpack.LoaderOptionsPlugin({
-    debug: true
-  }))
+  config.plugins.push(
+    new Webpack.LoaderOptionsPlugin({
+      debug: true
+    })
+  )
   // Force webpack-dev-middleware to write files to the disk for metalsmith
-  config.plugins.push(new WriteFilePlugin({
-    log: false
-  }))
+  config.plugins.push(
+    new WriteFilePlugin({
+      log: false
+    })
+  )
 }
 
 if (__PROD__) {
-  config.plugins.push(new Webpack.LoaderOptionsPlugin({
-    minimize: true
-  }))
-  config.plugins.push(new Webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production')
-    }
-  }))
+  config.plugins.push(
+    new Webpack.LoaderOptionsPlugin({
+      minimize: true
+    })
+  )
+  config.plugins.push(
+    new Webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    })
+  )
   config.plugins.push(new Webpack.optimize.AggressiveMergingPlugin())
   config.plugins.push(new Webpack.optimize.UglifyJsPlugin())
 }
