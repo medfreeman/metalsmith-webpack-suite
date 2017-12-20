@@ -1,5 +1,6 @@
 ---
 title: Metalsmith & Webpack
+permalink: false
 ---
 <div class="logos">
   <div class="logo">

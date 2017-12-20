@@ -5,6 +5,7 @@ import layouts from 'metalsmith-layouts'
 import ldschema from 'metalsmith-ldschema'
 import markdown from 'metalsmith-markdownit'
 import fingerprint from 'metalsmith-fingerprint-ignore'
+import permalinks from 'metalsmith-permalinks'
 import R from 'ramda'
 
 import paths from '../config/paths'
@@ -36,6 +37,11 @@ export default new Metalsmith(paths.projectRoot)
   .use(
     markdown({
       html: true
+    })
+  )
+  .use(
+    permalinks({
+      pattern: ':title'
     })
   )
   .use(
