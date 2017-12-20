@@ -1,16 +1,17 @@
 // Spawns a dev server with Metalsmith & Webpack live reloading via Browsersync
 // Inspired by https://github.com/Browsersync/recipes/tree/master/recipes/webpack.babel
-
 import { resolve } from 'path'
+
 import Debug from 'debug'
 import Webpack from 'webpack'
 import WebpackMiddleware from 'webpack-dev-middleware'
 import BrowserSync from 'browser-sync'
 import stripAnsi from 'strip-ansi'
 
-import metalsmith from './metalsmith'
 import webpackConfig from '../../webpack.config.js'
 import paths from '../config/paths'
+
+import metalsmith from './metalsmith'
 
 const debug = Debug('metalsmith-webpack-suite')
 
@@ -28,10 +29,10 @@ const webpackMiddleware = WebpackMiddleware(webpack, {
 
 // Run metalsmith and reload browsers
 // or send a fullscreen error message to the browser instead
-function buildMetalsmith (rebuild) {
+function buildMetalsmith(rebuild) {
   debug('Building Metalsmith')
 
-  metalsmith.build((err) => {
+  metalsmith.build(err => {
     if (err) {
       debug('Metalsmith build error:')
       console.error(err)
@@ -48,9 +49,9 @@ function buildMetalsmith (rebuild) {
 
 // Reload all devices when webpack bundle is complete
 // or send a fullscreen error message to the browser instead
-webpack.plugin('done', function (stats) {
+webpack.plugin('done', function(stats) {
   console.log('--- Webpack Stats: ---')
-  console.log(stats.toString({colors: true, chunks: false}))
+  console.log(stats.toString({ colors: true, chunks: false }))
   console.log('------')
 
   if (stats.hasErrors() || stats.hasWarnings()) {
@@ -78,9 +79,7 @@ browserSync.init({
   server: paths.serverRoot,
   open: false,
   logFileChanges: true,
-  middleware: [
-    webpackMiddleware
-  ],
+  middleware: [webpackMiddleware],
   plugins: ['bs-fullscreen-message'],
   files: [
     {
@@ -90,7 +89,7 @@ browserSync.init({
         resolve(paths.projectRoot, 'webpack.config.js'),
         resolve(paths.projectRoot, 'postcss.config.js')
       ],
-      fn: function (event, file) {
+      fn: function(event, file) {
         buildMetalsmith()
       }
     }

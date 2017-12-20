@@ -1,8 +1,9 @@
 import { parse } from 'path'
+
 import Table from 'cli-table2'
 import filesize from 'filesize'
 
-function generateFileMap (files) {
+function generateFileMap(files) {
   return Object.keys(files).reduce((map, filename) => {
     const file = files[filename]
     const parsedFilename = parse(filename)
@@ -21,24 +22,29 @@ function generateFileMap (files) {
   }, {})
 }
 
-export function StatisticsPlugin (options) {
+export function StatisticsPlugin(options) {
   return (files, metalsmith, done) => {
     const fileMap = generateFileMap(files)
     const fileTypes = Object.keys(fileMap)
 
     // File overview table
-    fileTypes.forEach((filetype) => {
+    fileTypes.forEach(filetype => {
       const fileTypeFiles = fileMap[filetype]
       const count = fileTypeFiles.length
       const size = fileTypeFiles.reduce((totalsize, entry) => {
         return totalsize + entry.file.contents.byteLength
       }, 0)
       const filenamesTable = new Table({
-        head: [`${count} ${filetype}-${count > 1 ? 'files' : 'file'} with total ${filesize(size)}`, 'File size'],
+        head: [
+          `${count} ${filetype}-${count > 1
+            ? 'files'
+            : 'file'} with total ${filesize(size)}`,
+          'File size'
+        ],
         wordWrap: true,
         colWidths: [process.stdout.columns - 16, 12]
       })
-      fileTypeFiles.forEach((entry) => {
+      fileTypeFiles.forEach(entry => {
         const size = filesize(entry.file.contents.byteLength)
         filenamesTable.push([entry.filename, size])
       })
@@ -49,8 +55,8 @@ export function StatisticsPlugin (options) {
   }
 }
 
-export function DebugPlugin (options) {
-  function sanitizeTableContent (content) {
+export function DebugPlugin(options) {
+  function sanitizeTableContent(content) {
     const length = content.length
     content = content.replace(/\s+/g, ' ').slice(0, config.maxContentLength)
     if (length > config.maxContentLength) {
@@ -72,9 +78,9 @@ export function DebugPlugin (options) {
     const fileMap = generateFileMap(files)
     const fileTypes = Object.keys(fileMap)
 
-    fileTypes.forEach((filetype) => {
+    fileTypes.forEach(filetype => {
       const fileTypeFiles = fileMap[filetype]
-      fileTypeFiles.forEach((entry) => {
+      fileTypeFiles.forEach(entry => {
         const content = sanitizeTableContent(entry.file.contents.toString())
         const size = filesize(entry.file.contents.byteLength)
         const metadata = {
