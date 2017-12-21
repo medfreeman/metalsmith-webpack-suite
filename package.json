@@ -113,7 +113,6 @@
     "filesize": "^3.5.11",
     "gh-pages": "^1.1.0",
     "git-exec-and-restage": "^1.0.1",
-    "handlebars": "^4.0.11",
     "http-server": "^0.10.0",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
