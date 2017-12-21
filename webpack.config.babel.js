@@ -50,7 +50,9 @@ const config = {
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
-      Popper: ['popper.js', 'default']
+      Popper: ['popper.js', 'default'],
+      Util: 'exports-loader?Util!bootstrap/js/dist/util',
+      Collapse: 'exports-loader?Collapse!bootstrap/js/dist/collapse'
     })
   ]
 }

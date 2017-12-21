@@ -125,6 +125,7 @@
     "metalsmith-layouts": "1.8.1",
     "metalsmith-ldschema": "^0.0.4",
     "metalsmith-markdownit": "^0.4.0",
+    "metalsmith-navigation": "^0.2.9",
     "metalsmith-permalinks": "^0.5.0",
     "node-sass": "^4.7.2",
     "nodemon": "^1.14.1",

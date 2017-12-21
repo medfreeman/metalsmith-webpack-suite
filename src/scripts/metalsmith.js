@@ -1,9 +1,10 @@
-// This is the actual metalsmith configuration script.
+/* eslint-disable import/max-dependencies */
 import Metalsmith from 'metalsmith'
 import assets from 'metalsmith-assets'
 import layouts from 'metalsmith-layouts'
 import ldschema from 'metalsmith-ldschema'
 import markdown from 'metalsmith-markdownit'
+import navigation from 'metalsmith-navigation'
 import fingerprint from 'metalsmith-fingerprint-ignore'
 import permalinks from 'metalsmith-permalinks'
 import R from 'ramda'
@@ -44,6 +45,26 @@ export default new Metalsmith(paths.projectRoot)
       pattern: ':title',
       relative: false
     })
+  )
+  .use(
+    navigation(
+      {
+        primary: {
+          sortByNameFirst: true,
+          filterProperty: false,
+          filterValue: false,
+          breadcrumbProperty: 'breadcrumb_path',
+          pathProperty: 'nav_path',
+          childrenProperty: 'nav_children',
+          mergeMatchingFilesAndDirs: true,
+          includeDirs: true
+        }
+      },
+      {
+        navListProperty: 'navs',
+        permalinks: true
+      }
+    )
   )
   .use(
     layouts({

@@ -1,3 +1,6 @@
+import 'bootstrap/js/dist/util'
+import 'bootstrap/js/dist/collapse'
+
 import '../scss/_bootstrap.scss'
 import '../css/page.css'
 

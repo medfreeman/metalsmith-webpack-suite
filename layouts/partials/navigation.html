@@ -1,0 +1,19 @@
+<nav class="navbar position-sticky sticky-top navbar-light bg-light navbar-expand-lg">
+  <div class="navbar-header">
+    <a href="#" class="navbar-brand"><%= title %></a>
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% R.forEach(p => {
+        if (p.name.match(/^[A-Z]+/) && !p.name.match(/\..*?$/)) {
+      %>
+        <li class="nav-item"><a class="nav-link" href="/<%=p.path%>/"><%= p.name %></a></li>
+      <%
+        }
+      }, navs['primary']); %>
+    </ul>
+  </div>
+</nav>

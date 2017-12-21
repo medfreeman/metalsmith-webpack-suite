@@ -10,14 +10,9 @@
     <script src="/<%= fingerprint['assets/page.js'] %>" defer></script>
   </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="#" class="navbar-brand"><%= title %></a>
-        </div>
-      </div>
-    </nav>
     <div class="container">
+      <%- render('partials/navigation') %>
+      <div class="row mt-5"></div>
       <%- contents %>
     </div>
   </body>
