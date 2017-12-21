@@ -31,6 +31,12 @@ const config = {
         use: ExtractTextPlugin.extract({
           use: ['css-loader', 'postcss-loader']
         })
+      },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          use: ['css-loader', 'postcss-loader', 'sass-loader']
+        })
       }
     ]
   },
@@ -38,6 +44,13 @@ const config = {
     new ExtractTextPlugin({
       filename: 'page.css',
       allChunks: true
+    }),
+
+    new Webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default']
     })
   ]
 }

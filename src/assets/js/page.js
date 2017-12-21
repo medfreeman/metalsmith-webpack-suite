@@ -1,3 +1,4 @@
+import '../scss/_bootstrap.scss'
 import '../css/page.css'
 
 document.addEventListener('DOMContentLoaded', function(event) {
